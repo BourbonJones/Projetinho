@@ -1,0 +1,17 @@
+button{
+    height: 50%;
+}
+
+.edit{
+    background-color: darkgreen;
+    margin: auto auto auto auto;
+}
+
+.delete{
+    background-color: red;
+    margin: auto auto auto auto;
+}
+
+#inserir_assunto{
+    height: 90%;
+}
