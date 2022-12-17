@@ -5,7 +5,7 @@ const Professor = require("./Controllers/ProfessorController");
 
 //Database
 function connectToDatabase() {
-    mongoose.connect("mongodb+srv://BourbonJones:ad8530fe@cluster0.rrnq8.mongodb.net/?retryWrites=true&w=majority", {
+    mongoose.connect("mongodb+srv://<user>:<password>@cluster0.rrnq8.mongodb.net/?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
