@@ -5,8 +5,23 @@ import "../Styles/Login.css";
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            user: '',
+            password: ''
+        };
+
+        this.handleChangeUser = this.handleChangeUser.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
 
         this.redirctToModeHome = this.redirctToModeHome.bind(this);
+    };
+
+    handleChangeUser(event) {
+        this.setState({user: event.target.value});
+    };
+
+    handleChangePassword(event) {
+        this.setState({password: event.target.value});
     };
 
     redirctToModeHome(event){
@@ -15,10 +30,13 @@ class Login extends React.Component {
         var url = new URL(url_string);
         var mode_user = url.searchParams.get("mode");
         
-        if(mode_user){
+        if(mode_user == "aluno"){
+            window.location.replace('./' + mode_user + "?aluno=" + this.state.user);
+        }
+        else if(mode_user == "professor"){
             window.location.replace('./' + mode_user);
         }
-    }
+    };
 
     render() {
         return (
@@ -39,8 +57,8 @@ class Login extends React.Component {
                         <div className="body_subject">Como você deseja se conectar?</div>
                     </div>
                     <form className="choose_your_mode">
-                        <label>Usuário: <input type="text" placeholder="user" /></label>
-                        <label>Senha: <input type="text" placeholder="password" /></label>
+                        <label>Usuário: <input type="text" placeholder="user" value={this.state.user} onChange={this.handleChangeUser}/></label>
+                        <label>Senha: <input type="text" placeholder="password" value={this.state.password} onChange={this.handleChangePassword}/></label>
                         <button type="submit" onClick={this.redirctToModeHome}>Logar</button>
                     </form>
                 </div>

@@ -5,6 +5,10 @@ const aluno = new mongoose.Schema({
         type: String,
         required: true
     },
+    senha: {
+        type: String,
+        required: true
+    },
     assuntos: {
         type: Array
     }

@@ -28,8 +28,18 @@ async function getAssuntoByName(options) {
     }
 }
 
+async function updateAssunto(options){
+    try{
+        let assunto = await Assunto.findOne({nome: options.nome});
+        return ({status: "ok", resposta: "Resumo do Assunto " + assunto.nome + " atualizado com sucesso"});
+    }catch(erro){
+        return ({status: "erro", resposta: erro});
+    }
+}
+
 module.exports = {
     getAllAssuntos: getAllAssuntos,
     setAssunto: setAssunto,
-    getAssuntoByName: getAssuntoByName
+    getAssuntoByName: getAssuntoByName,
+    updateAssunto: updateAssunto
 }

@@ -10,7 +10,7 @@ function pegar(url) {
     return request.responseText;
 }
 
-var lista_inicial = JSON.parse(pegar("http://localhost:8081/aluno/Teste_2"));
+var lista_inicial = JSON.parse(pegar("http://localhost:8081/professor/"));
 
 class Aluno extends React.Component {
     constructor(props) {

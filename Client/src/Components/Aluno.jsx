@@ -2,6 +2,9 @@ import React from "react";
 import "../Styles/Aluno.css";
 import materias from "../materias.json";
 
+const urlParams = new URLSearchParams(window.location.search);
+const aluno = urlParams.get("aluno");
+
 function pegar(url) {
     let request = new XMLHttpRequest();
     request.open("GET", url, false);
@@ -9,7 +12,7 @@ function pegar(url) {
     return request.responseText;
 }
 
-var lista_inicial = JSON.parse(pegar("http://localhost:8081/aluno/Teste_2"));
+var lista_inicial = JSON.parse(pegar("http://localhost:8081/aluno/" + aluno));
 
 class Aluno extends React.Component {
     constructor(props) {
@@ -36,19 +39,26 @@ class Aluno extends React.Component {
         ));
 
         //Renderiza assuntos da materia escolhida
-        var lista_assuntos = this.state.assuntos.assuntos
-        .filter(assunto => assunto.materia == this.state.subject_page)
-        .map((assunto) => {
-            var link = "/aluno/assunto?assunto=" + assunto.nome_for_link;
-            var matriculado = assunto.matriculado? "Sim": "Não";
-            var tem_teste = assunto.tem_teste? "Teste Pendente": "Sem Testes Agendados"
-            return(
-            <li className="infos" key={assunto.nome}>
-                <div className="info"><a href={link} className="info">{assunto.nome}</a></div>
-                <div className="info">{matriculado}</div>
-                <div className="info">{tem_teste}</div>
-            </li>
-        )});
+
+        var lista_assuntos;
+        if (this.state.assuntos.status === "ok") {
+            lista_assuntos = this.state.assuntos.assuntos
+                .filter(assunto => assunto.materia == this.state.subject_page)
+                .map((assunto) => {
+                    var link = "/aluno/assunto?assunto=" + assunto.nome_for_link;
+                    var matriculado = assunto.matriculado ? "Sim" : "Não";
+                    var tem_teste = assunto.tem_teste ? "Teste Pendente" : "Sem Testes Agendados"
+                    return (
+                        <li className="infos" key={assunto.nome}>
+                            <div className="info"><a href={link} className="info">{assunto.nome}</a></div>
+                            <div className="info">{matriculado}</div>
+                            <div className="info">{tem_teste}</div>
+                        </li>
+                    )
+                });
+        }else{
+            lista_assuntos = <h1 className="erro">Page Fault</h1>
+        }
 
         return (
             <div id="main">
