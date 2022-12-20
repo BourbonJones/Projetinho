@@ -37,9 +37,19 @@ async function updateAssunto(options){
     }
 }
 
+async function deleteAssunto(options){
+    try{
+        await Assunto.remove({nome: options.nome});
+        return {status: "ok", resposta: "Assunto " + options.nome + " removido com sucesso"};
+    }catch(erro){
+        return ({status: "erro", resposta: erro});
+    }
+}
+
 module.exports = {
     getAllAssuntos: getAllAssuntos,
     setAssunto: setAssunto,
     getAssuntoByName: getAssuntoByName,
-    updateAssunto: updateAssunto
+    updateAssunto: updateAssunto,
+    deleteAssunto: deleteAssunto
 }

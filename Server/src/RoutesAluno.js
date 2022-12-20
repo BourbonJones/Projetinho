@@ -90,5 +90,13 @@ routes.patch(dir_name + "matriculas", async (req, res) => {
     res.send(message);
 });
 
+routes.delete(dir_name + "matriculas", async (req, res) => {
+    let aluno = {
+        nome: req.body.nome
+    };
+    let message = await Aluno.deleteAluno(aluno);
+    res.send(message);
+});
+
 
 module.exports = routes;

@@ -43,9 +43,9 @@ class Aluno extends React.Component {
         var lista_assuntos;
         if (this.state.assuntos.status === "ok") {
             lista_assuntos = this.state.assuntos.assuntos
-                .filter(assunto => assunto.materia == this.state.subject_page)
+                .filter(assunto => assunto.materia === this.state.subject_page)
                 .map((assunto) => {
-                    var link = "/aluno/assunto?assunto=" + assunto.nome_for_link;
+                    var link = "/aluno/assunto?aluno=" + aluno + "&assunto=" + assunto.nome_for_link;
                     var matriculado = assunto.matriculado ? "Sim" : "Não";
                     var tem_teste = assunto.tem_teste ? "Teste Pendente" : "Sem Testes Agendados"
                     return (

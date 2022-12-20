@@ -30,10 +30,10 @@ class Login extends React.Component {
         var url = new URL(url_string);
         var mode_user = url.searchParams.get("mode");
         
-        if(mode_user == "aluno"){
+        if(mode_user === "aluno"){
             window.location.replace('./' + mode_user + "?aluno=" + this.state.user);
         }
-        else if(mode_user == "professor"){
+        else if(mode_user === "professor"){
             window.location.replace('./' + mode_user);
         }
     };

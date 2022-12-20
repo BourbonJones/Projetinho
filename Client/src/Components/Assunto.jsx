@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styles/Aluno.css";
-import materias from "../materias.json";
+//import materias from "../materias.json";
 
 const urlParams = new URLSearchParams(window.location.search);
 const assunto = urlParams.get("assunto");

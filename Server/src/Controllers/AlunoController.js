@@ -40,9 +40,19 @@ async function updateAlunoAssuntoAtributo(options){
     }
 }
 
+async function deleteAluno(options){
+    try{
+        await Aluno.remove({nome: options.nome});
+        return {status: "ok", message: "Aluno adicionado com sucesso!"};
+    }catch(erro){
+        return {status: "ok", message: erro};
+    }
+}
+
 
 module.exports = {
     createAluno: createAluno,
     getAluno: getAluno,
-    updateAlunoAssuntoAtributo: updateAlunoAssuntoAtributo
+    updateAlunoAssuntoAtributo: updateAlunoAssuntoAtributo,
+    deleteAluno: deleteAluno
 }
